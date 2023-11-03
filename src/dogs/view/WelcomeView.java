@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import dogs.controller.DogController;
+import dogs.controller.IDogController;
 import dogs.controller.IWelcomeController;
 
 @SuppressWarnings("serial")
@@ -92,7 +94,8 @@ public class WelcomeView extends JFrame implements IView, ActionListener {   // 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == ADD_DOG) {
-			System.out.println("Ajouter un chien");
+			IDogController createDog = new DogController();
+			createDog.goToCreate();
 		}
 		
 		if (e.getActionCommand() == LIST_DOG) {

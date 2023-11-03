@@ -2,6 +2,7 @@
 package dogs.view;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +19,8 @@ import dogs.controller.IDogController;
 public class DogCreateView extends JDialog implements IView, ActionListener {
 	
 	private static final String VIEW_TITLE = "Inscription d'un chien";
+	private static final Dimension DEFAULT_SIZE = new Dimension(300, 150);
+	private static final String CREATE_DOG = "create_dog";
 
 	private JTextField name = new JTextField(15);
 	private JTextField breed = new JTextField(20);
@@ -37,11 +40,12 @@ public class DogCreateView extends JDialog implements IView, ActionListener {
 
 	@Override
 	public void display() {
-		// compl�ter
+		this.setVisible(true);
 	}
 	
 	private void initialize() {
-		this.setTitle(VIEW_TITLE);		
+		this.setTitle(VIEW_TITLE);	
+		this.setSize(DEFAULT_SIZE);
 		this.setModalityType(DEFAULT_MODALITY_TYPE);
 	}
 
@@ -53,29 +57,49 @@ public class DogCreateView extends JDialog implements IView, ActionListener {
 	private void setUpInputDataPanel() {
 		// container interm�diaire JPanel qui contient les �tiquettes (JLabel) et les zones de textes (JTextField)
 		// utiliser un GridLayout comme LayoutManager
+		JPanel createDogPanel = new JPanel();
+		createDogPanel.setLayout(new GridLayout(2,2));
+		this.add(createDogPanel, null);
+		
+		addTextField(createDogPanel,"Nom:",this.name);
+		addTextField(createDogPanel,"Race:",this.breed);
+		
 	}
 	
 	private void addTextField(JPanel panel, String labelText, JTextField textField) {
-		// Pour ajouter successivement une �tiquette et une zone de texte au panel
+		
+		panel.add(new JLabel(labelText));
+		panel.add(textField);
 	}
 
 	private void setUpActionPanel() {
 		// container interm�diaire JPanel qui contient le bouton pour inscrire le chien
+		JPanel actionPanel = new JPanel();
+		actionPanel.setLayout(new BorderLayout());
+		this.add(actionPanel,BorderLayout.SOUTH);
+		
+		addButton(actionPanel,"Inscrire",CREATE_DOG);
 	}
 
 	// m�me m�thode que dans WelcomeView
 	// DRY -> m�thode utilitaire � extraire dans une classe utilitaire util.view.ViewUtil 
 	private void addButton(JPanel actionPanel, String buttonText, String buttonAction) {   
-		// Pour ajouter un bouton au panel	
+		JButton button = new JButton(buttonText);
+		button.setActionCommand(buttonAction);
+		button.addActionListener(this);
+		actionPanel.add(button);
 	}
 	
 	private void createDog() {
-		// afficher seulement un message en console
+		System.out.println(this.name.getText());
+		System.out.println(this.breed.getText());
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// intercepter l'�v�nement sur le bouton Inscrire et appeler la m�thode createDog
+		if (e.getActionCommand() == CREATE_DOG) {
+			createDog();
+		}
 	}
 
 }
