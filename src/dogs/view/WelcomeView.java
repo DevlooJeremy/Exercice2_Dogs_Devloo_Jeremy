@@ -2,8 +2,11 @@ package dogs.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -12,10 +15,12 @@ import javax.swing.SwingConstants;
 import dogs.controller.IWelcomeController;
 
 @SuppressWarnings("serial")
-public class WelcomeView extends JFrame implements IView {   // Configurer Eclipse pour ignorer les avertissements sur serial Id
+public class WelcomeView extends JFrame implements IView, ActionListener {   // Configurer Eclipse pour ignorer les avertissements sur serial Id
 	
 	private static final String VIEW_TITLE = "Gestion des chiens";
 	private static final String WELCOME_MESSAGE = "Bienvenue !";
+	private static final String ADD_DOG = "add_dog";
+	private static final String LIST_DOG = "list_dog";
 	
 	private static final String WELCOME_PICTURE = "../resource/dog.jpg";
 
@@ -71,7 +76,29 @@ public class WelcomeView extends JFrame implements IView {   // Configurer Eclip
 
 	private void setUpActionPanel() {
 		JPanel actionPanel = new JPanel();
-		this.add(actionPanel, );
+		this.add(actionPanel, BorderLayout.SOUTH);
+		
+		JButton addDogButton = new JButton("Inscrire un chien");
+		addDogButton.setActionCommand(ADD_DOG);
+		addDogButton.addActionListener(this);
+		actionPanel.add(addDogButton);
+		
+		JButton listDogButton = new JButton("Liste des chiens");
+		listDogButton.setActionCommand(LIST_DOG);
+		listDogButton.addActionListener(this);
+		actionPanel.add(listDogButton);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getActionCommand() == ADD_DOG) {
+			System.out.println("Ajouter un chien");
+		}
+		
+		if (e.getActionCommand() == LIST_DOG) {
+			System.out.println("Faire la liste des chiens");
+		}
+		
 	}
 
 
