@@ -4,6 +4,7 @@ import dog.converter.DogConverter;
 import dogRepository.IDogRepository;
 import dogs.model.Dog;
 import dogs.view.DogCreateView;
+import dogs.view.IView;
 import dto.DogDTO;
 
 public class DogController implements IDogController{
@@ -17,7 +18,7 @@ public class DogController implements IDogController{
 	
 	@Override
 	public void goToCreate() {
-		DogCreateView dogCreateView = new DogCreateView(this);
+		IView dogCreateView = new DogCreateView(this);
 		dogCreateView.display();
 	}
 	
