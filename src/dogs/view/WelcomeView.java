@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import dogRepository.DogMemoryRepository;
+import dogRepository.IDogRepository;
 import dogs.controller.DogController;
 import dogs.controller.IDogController;
 import dogs.controller.IWelcomeController;
@@ -94,7 +96,8 @@ public class WelcomeView extends JFrame implements IView, ActionListener {   // 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == ADD_DOG) {
-			IDogController createDog = new DogController();
+			IDogRepository repository = new DogMemoryRepository();
+			IDogController createDog = new DogController(repository);
 			createDog.goToCreate();
 		}
 		

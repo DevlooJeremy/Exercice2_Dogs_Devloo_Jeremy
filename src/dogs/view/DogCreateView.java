@@ -7,13 +7,17 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.IconView;
 
 import dogs.controller.IDogController;
+import dto.DogDTO;
 
 
 public class DogCreateView extends JDialog implements IView, ActionListener {
@@ -93,12 +97,16 @@ public class DogCreateView extends JDialog implements IView, ActionListener {
 	private void createDog() {
 		System.out.println(this.name.getText());
 		System.out.println(this.breed.getText());
+		DogDTO dto = new DogDTO(this.name.getText(),this.breed.getText());
+		this.controller.add(dto);
+		JOptionPane.showMessageDialog(this, "Merci d'avoir inscrit un chien!","Merci",JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == CREATE_DOG) {
 			createDog();
+			
 		}
 	}
 
