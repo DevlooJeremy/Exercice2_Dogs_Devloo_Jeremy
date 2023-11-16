@@ -4,5 +4,6 @@ public interface IWelcomeController {
 
 	void startApplication();
 	void wantToCreateDog();
+	void wantToListDog();
 	
 }

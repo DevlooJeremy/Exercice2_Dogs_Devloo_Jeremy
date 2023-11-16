@@ -101,7 +101,7 @@ public class WelcomeView extends JFrame implements IView, ActionListener {   // 
 		}
 		
 		if (e.getActionCommand() == LIST_DOG) {
-			System.out.println("Faire la liste des chiens");
+			this.controller.wantToListDog();
 		}
 		
 	}

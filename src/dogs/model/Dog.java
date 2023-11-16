@@ -11,6 +11,11 @@ public class Dog {  // La classe est tr�s simple ici mais il pourrait avoir de
 		this.name = name;
 		this.breed = breed;
 	}
+	
+	public void setId(int id)
+	{
+		this.id = id;
+	}
 
 	public int getId() {
 		return this.id;

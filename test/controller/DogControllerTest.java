@@ -15,7 +15,7 @@ class DogControllerTest {
 		//Arrange
 		RepositorySpy repository = new RepositorySpy();
 		DogController dogController = new DogController(repository);
-		DogDTO dogDTO = new DogDTO("Jean","Boxer");
+		DogDTO dogDTO = new DogDTO("Jean","Boxer",0);
 		
 		//Act
 		dogController.add(dogDTO);

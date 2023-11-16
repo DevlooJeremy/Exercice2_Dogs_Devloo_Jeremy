@@ -16,7 +16,8 @@ public class DogMemoryRepository implements IDogRepository{
 
 	@Override
 	public void add(Dog dog) {
-		this.map.put(this.size() + 1, dog);
+		dog.setId(this.size() + 1);
+		this.map.put(dog.getId(), dog);
 	}
 
 	@Override

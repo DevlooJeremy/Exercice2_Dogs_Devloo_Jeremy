@@ -9,9 +9,11 @@ import dogs.view.WelcomeView;
 public class WelcomeController implements IWelcomeController {
 
 	private IDogController controller;
+	private IDogListController listController;
 	
-	public WelcomeController(IDogController controller) {
+	public WelcomeController(IDogController controller, IDogListController listController) {
 		this.controller = controller;
+		this.listController = listController;
 	}
 	
 	@Override
@@ -23,5 +25,10 @@ public class WelcomeController implements IWelcomeController {
 	@Override
 	public void wantToCreateDog() {
 		this.controller.goToCreate();
+	}
+
+	@Override
+	public void wantToListDog() {
+		this.listController.goToCreate();
 	}
 }
